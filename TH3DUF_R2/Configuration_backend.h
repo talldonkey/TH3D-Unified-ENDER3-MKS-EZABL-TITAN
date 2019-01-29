@@ -552,6 +552,9 @@
 // Defined in configuration.h
 //#define EZOUTV2_ENABLE
 
+// Quiet down the speaker!
+#define SPEAKER_KILL
+
 //#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 // Stock Ender3 display with reversed cable (EXP3 on display to EXP1 on MKS Gen L)
 #define CR10_STOCKDISPLAY
