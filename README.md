@@ -1,22 +1,24 @@
-**This firmware is maintained by TH3D. The goal is an easy to use firmware for 3D printers that we have added support for.**
+**TH3D Unified Firmware with changes for my Custom Ender-3 with MKS-GEN-L and EZABL**
 
 ----------
 
-Works with printers that are stock as well as ones using our products we sell like the [EZABL](https://www.th3dstudio.com/ezabl-kit/) and [EZOut](https://www.th3dstudio.com/product/ezout-cr-10-filament-sensor-kit/).
+This fork is meant for my Creality Ender-3 Modded machine with these properties/mods
 
-This is meant to be used with the TH3D line of products or stock machines. This may not work with other products so use at your own risk. Additional files and setup information available at http://firmware.th3dstudio.com.
+* Early Ender-3, Offset wheels, single sided Y tensioner, glued on build sheet
+* MKS Gen L Mainboard
+* FYSETC TMC2208 V1.2 on X, Y, Z, and E
+* Stock Creality Hotend with Titanium All-Metal Heatbreak
+* [Petsfang Direct with Titan Extruder](https://www.thingiverse.com/thing:2907538)
+* [TH3D EZABL Mini](https://www.th3dstudio.com/product-category/auto-bed-leveling/) using the left-side mounted EZABL mount provided by the Petsfang Direct
+  * This assumes that the EZABL was purchased from TH3D and that the Z-End-Stop has been modified for the EZABL.
+* [TH3D EZOut V1](https://www.th3dstudio.com/product/ezout-cr-10-filament-sensor-kit/)
 
 ----------
 
-- EZABL Auto Bed Leveling Kits: [https://www.th3dstudio.com/product-category/auto-bed-leveling/](https://www.th3dstudio.com/product-category/auto-bed-leveling/)
-- EZOut: [https://www.th3dstudio.com/product/ezout-cr-10-filament-sensor-kit/](https://www.th3dstudio.com/product/ezout-cr-10-filament-sensor-kit/)
-- All Products:[ https://www.th3dstudio.com/shop/](https://www.th3dstudio.com/shop/)
-
+**This firmware is NOT maintained by TH3D. This is meant to be a personal fork/branch that will never be merged back to TH3D Unified Firmware, but rather provides me the ability to make my own custom changes while merging in upstream TH3D firmware updates that support future TH3D products**
 
 ----------
-
 
 **THIS IS PROVIDED UNDER THE GPL V3 LICENSE.
 PROVIDED AS-IS. NO SUPPORT OR WARRANTY IS PROVIDED.**
 
-Based on [Marlin](http://marlinfw.org) 1.1.9 Stable. Highly customized and modified for easy use with stock printer boards. If you have a custom machine it is best to use vanilla [Marlin](http://marlinfw.org).
