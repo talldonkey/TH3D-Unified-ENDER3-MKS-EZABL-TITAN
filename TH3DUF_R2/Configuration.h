@@ -52,6 +52,18 @@
 #define CONFIGURATION_H_VERSION 010109
 
 //===========================================================================
+// *************************     TALLDONKEYS PRINTER      *******************
+//===========================================================================
+#define TALLDONKEY_ENDER3
+
+// Petsfang Left Mounted Probe with X-53 Y-13, with custom PETSFANG_LEFT define in configuration_backend.h
+#define PETSFANG_LEFT
+
+// EZOut left disabled until I can get it figured out
+//#define EZOUT_ENABLE
+
+
+//===========================================================================
 //============================ TH3D Configuration ===========================
 //===========================================================================
 
@@ -476,11 +488,11 @@
 // You can do down to 10mm on the Wanhao i3 since it cannot print on the entire bed.
 // You can do down to 5mm on the Wanhao i3 Mini since it cannot print on the entire bed.
 // (only used if EZABL enabled)
-#define EZABL_PROBE_EDGE 15
+#define EZABL_PROBE_EDGE 20
 
 // If you want to speed up the probing process you can try using the Fast Probe option
 // DO NOTE: Not all machines will be accurate at the quicker speeds. Use M48 to verify accuracy.
-//#define EZABL_FASTPROBE
+#define EZABL_FASTPROBE
 
 // This will disable the XYE motors during probing. Can be useful if you have stepper motors causing interference issues with the EZABL sensor.
 //#define PROBING_MOTORS_OFF
@@ -537,8 +549,9 @@
 
 // If you are using an TH3D Tough Extruder, Bondtech BMG (set steps below to 415), or E3D Titan Extruder
 // uncomment the below line to setup the firmware to the correct steps and direction. Also applicable to Titan/Tough Aero setups.
-//#define TITAN_EXTRUDER
-#define TITAN_EXTRUDER_STEPS 463
+#define TITAN_EXTRUDER
+//#define TITAN_EXTRUDER_STEPS 463
+#define TITAN_EXTRUDER_STEPS 440
 
 // DUAL HOTEND SETTINGS ----------------------------
 
@@ -563,7 +576,7 @@
 
 // If you want PID tuning on your bed you can enable the below line. But PID on a bed is not typically needed. By default BED PID is disabled.
 // This will be disabled when using manual mesh leveling with a 1284p board due to memory limitations.
-//#define PIDBED_ENABLE
+#define PIDBED_ENABLE
 
 // If you are using an AC bed with a standalone controller (Keenovo) uncomment the below line to disable the heated bed in the firmware
 //#define AC_BED
@@ -580,7 +593,7 @@
 //#define USER_PRINTER_NAME "CHANGE ME" 
 
 // If your printer is homing to the endstops hard uncomment this to change the homing speed/divisor to make it less aggressive.
-//#define SLOWER_HOMING
+#define SLOWER_HOMING
 
 // BOOT SCREEN OPTIONS -----------------------------
 
@@ -608,7 +621,7 @@
 // Uncomment the below line to enable Linear Advance Pressure Control.
 //#define LINEAR_ADVANCE
 // Change the K Value here or use M900 KX.XX in your starting code (recommended).
-#define LINEAR_ADVANCE_K 0
+#define LINEAR_ADVANCE_K 0.15
 
 // If you want to use manual mesh leveling you can enable the below option. TH3D does NOT provide free support
 // to help you use this feature. This is for generating a MANUAL mesh WITHOUT a probe. 
