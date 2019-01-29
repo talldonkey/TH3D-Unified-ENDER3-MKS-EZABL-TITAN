@@ -5,6 +5,7 @@
 This fork is meant for my Creality Ender-3 Modded machine with these properties/mods
 
 * Early Ender-3, Offset wheels, single sided Y tensioner, glued on build sheet
+* Stock Display
 * MKS Gen L Mainboard
 * FYSETC TMC2208 V1.2 on X, Y, Z, and E
 * Stock Creality Hotend with Titanium All-Metal Heatbreak
@@ -21,4 +22,3 @@ This fork is meant for my Creality Ender-3 Modded machine with these properties/
 
 **THIS IS PROVIDED UNDER THE GPL V3 LICENSE.
 PROVIDED AS-IS. NO SUPPORT OR WARRANTY IS PROVIDED.**
-

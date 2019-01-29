@@ -552,7 +552,10 @@
 // Defined in configuration.h
 //#define EZOUTV2_ENABLE
 
-  #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+// Stock Ender3 display with reversed cable (EXP3 on display to EXP1 on MKS Gen L)
+#define CR10_STOCKDISPLAY
+
   #define BAUDRATE 250000
 
   #define X_MIN_ENDSTOP_INVERTING true
