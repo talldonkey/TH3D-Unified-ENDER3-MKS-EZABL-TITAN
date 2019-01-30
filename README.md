@@ -1,4 +1,4 @@
-***WORK IN PROGRESS DO NOT USE YET***
+***WORK IN PROGRESS AND UNTESTED DO NOT USE YET***
 
 **TH3D Unified Firmware with changes for my Custom Ender-3 with MKS-GEN-L and EZABL**
 
@@ -10,7 +10,7 @@ This fork is meant for my Creality Ender-3 Modded machine with these properties/
 * Stock Display
 * MKS Gen L Mainboard
 * FYSETC TMC2208 V1.2 on X, Y, Z, and E
-* Stock Creality Hotend with Titanium All-Metal Heatbreak
+* Stock Creality Hotend with [TH3D Titanium All-Metal Heatbreak](https://www.th3dstudio.com/product/tough-titanium-heatbreak-for-creality-machines-tough-dual-hotend/)
 * [Petsfang Direct with Titan Extruder](https://www.thingiverse.com/thing:2907538)
 * [TH3D EZABL Mini](https://www.th3dstudio.com/product-category/auto-bed-leveling/) using the left-side mounted EZABL mount provided by the Petsfang Direct
   * This assumes that the EZABL was purchased from TH3D and that the Z-End-Stop has been modified for the EZABL.
