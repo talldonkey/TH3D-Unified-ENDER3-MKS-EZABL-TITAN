@@ -553,11 +553,11 @@
 //#define EZOUTV2_ENABLE
 
 // Quiet down the speaker!
-#define SPEAKER_KILL
+  #define SPEAKER_KILL
 
 //#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 // Stock Ender3 display with reversed cable (EXP3 on display to EXP1 on MKS Gen L)
-#define CR10_STOCKDISPLAY
+  #define CR10_STOCKDISPLAY
 
   #define BAUDRATE 250000
 
@@ -591,9 +591,9 @@
   #define DEFAULT_ZJERK                  0.4
   #define DEFAULT_EJERK                  5.0
   
-  #define INVERT_X_DIR false
-  #define INVERT_Y_DIR false
-  #define INVERT_Z_DIR true
+  #define INVERT_X_DIR true
+  #define INVERT_Y_DIR true
+  #define INVERT_Z_DIR false
   
   #if ENABLED(TITAN_EXTRUDER)
     #define INVERT_E0_DIR false
@@ -616,7 +616,7 @@
   #define ENCODER_PULSES_PER_STEP 4
   #define ENCODER_STEPS_PER_MENU_ITEM 1
 
-  // I am guessing Encoder does not need to be reversed, this needs to be tested.
+  // I am guessing Encoder does not need to be reversed, this needs to be tested.  Confirmed 1/30/2019 - Encoder works without this.
   //#define REVERSE_ENCODER_DIRECTION
   
   #define PRINTER_ENABLED_CHECK
