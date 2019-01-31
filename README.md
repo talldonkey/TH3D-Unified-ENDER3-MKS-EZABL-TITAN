@@ -1,5 +1,3 @@
-***WORK IN PROGRESS AND UNTESTED DO NOT USE YET***
-
 **TH3D Unified Firmware with changes for my Custom Ender-3 with MKS-GEN-L and EZABL**
 
 ----------
