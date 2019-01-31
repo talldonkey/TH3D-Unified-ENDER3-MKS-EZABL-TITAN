@@ -619,7 +619,7 @@
 // Linear Advance Pressure Control - This is provided for convenience and is unsupported with included product support.
 // See http://marlinfw.org/docs/features/lin_advance.html for full instructions.
 // Uncomment the below line to enable Linear Advance Pressure Control.
-//#define LINEAR_ADVANCE
+#define LINEAR_ADVANCE
 // Change the K Value here or use M900 KX.XX in your starting code (recommended).
 #define LINEAR_ADVANCE_K 0.15
 
