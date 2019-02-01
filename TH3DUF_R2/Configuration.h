@@ -587,7 +587,7 @@
 // MISC --------------------------------------------
 
 // If you have a 5015 fan that whines when under 100% speed uncomment the below line.
-//#define FAN_FIX
+#define FAN_FIX
 
 // Use your own printer name
 //#define USER_PRINTER_NAME "CHANGE ME" 
