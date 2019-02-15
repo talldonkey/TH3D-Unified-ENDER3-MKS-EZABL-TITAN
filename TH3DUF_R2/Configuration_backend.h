@@ -582,11 +582,11 @@
   #endif
   
   #define DEFAULT_MAX_FEEDRATE          { 300, 300, 15, 50 }
-  #define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 200, 10000 }
+  #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 200, 10000 }
 
-  #define DEFAULT_ACCELERATION          1000    
+  #define DEFAULT_ACCELERATION          800    
   #define DEFAULT_RETRACT_ACCELERATION  1500   
-  #define DEFAULT_TRAVEL_ACCELERATION   1000    
+  #define DEFAULT_TRAVEL_ACCELERATION   800    
   
   #define DEFAULT_XJERK                 10.0
   #define DEFAULT_YJERK                 10.0
