@@ -563,8 +563,7 @@
 // If you are using an TH3D Tough Extruder, Bondtech BMG (set steps below to 415), or E3D Titan Extruder
 // uncomment the below line to setup the firmware to the correct steps and direction. Also applicable to Titan/Tough Aero setups.
 #define TITAN_EXTRUDER
-//#define TITAN_EXTRUDER_STEPS 463
-#define TITAN_EXTRUDER_STEPS 440
+#define TITAN_EXTRUDER_STEPS 463
 
 // DUAL HOTEND SETTINGS ----------------------------
 
