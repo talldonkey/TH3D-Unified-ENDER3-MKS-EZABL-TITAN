@@ -458,6 +458,7 @@
   #define BABYSTEP_OFFSET
   #define EZOUTV2_ENABLE
   #define FAST_PWM_FAN
+  #define PIDBED_ENABLE
   
   #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
   #define BAUDRATE 250000
@@ -651,7 +652,7 @@
     #if ENABLED(CUSTOM_ESTEPS)
       #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
     #else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
     #endif
   #endif
   
@@ -1084,9 +1085,9 @@
   #define X_MIN_ENDSTOP_INVERTING false
   #define Y_MIN_ENDSTOP_INVERTING false
   #define Z_MIN_ENDSTOP_INVERTING false
-  #define X_MAX_ENDSTOP_INVERTING true
-  #define Y_MAX_ENDSTOP_INVERTING true
-  #define Z_MAX_ENDSTOP_INVERTING true
+  #define X_MAX_ENDSTOP_INVERTING false
+  #define Y_MAX_ENDSTOP_INVERTING false
+  #define Z_MAX_ENDSTOP_INVERTING false
   #define Z_MIN_PROBE_ENDSTOP_INVERTING false
 
   #if ENABLED(TITAN_EXTRUDER)
@@ -1095,25 +1096,35 @@
     #if ENABLED(CUSTOM_ESTEPS)
 	  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	#else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
 	#endif
   #endif
   
-  #define DEFAULT_MAX_FEEDRATE          { 500, 500, 15, 50 }
-  #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 100, 5000 }
+  #define DEFAULT_MAX_FEEDRATE          { 200, 200, 15, 50 }
+  #define DEFAULT_MAX_ACCELERATION      { 800, 800, 100, 5000 }
 
   #define DEFAULT_ACCELERATION          500   
   #define DEFAULT_RETRACT_ACCELERATION  1000  
   #define DEFAULT_TRAVEL_ACCELERATION   500   
   
-  #define DEFAULT_XJERK                 10.0
-  #define DEFAULT_YJERK                 10.0
+  #if ENABLED(CR10_S4) || ENABLED(CR10_S5)
+    #define DEFAULT_XJERK                 5.0
+    #define DEFAULT_YJERK                 5.0
+  #else
+    #define DEFAULT_XJERK                 7.0
+    #define DEFAULT_YJERK                 7.0
+  #endif
   #define DEFAULT_ZJERK                  0.4
   #define DEFAULT_EJERK                  5.0
   
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR true
-  #define INVERT_Z_DIR false
+  
+  #if ENABLED(ENDER5)
+    #define INVERT_Z_DIR true
+  #else
+    #define INVERT_Z_DIR false
+  #endif
   
   #if ENABLED(TITAN_EXTRUDER)
     #define INVERT_E0_DIR false
@@ -1206,7 +1217,7 @@
     #if ENABLED(CUSTOM_ESTEPS)
 	  #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	#else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
 	#endif
   #endif
   
@@ -1343,7 +1354,7 @@
     #if ENABLED(CUSTOM_ESTEPS)
 	    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	  #else
-      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
 	  #endif
   #endif
   #define DEFAULT_MAX_FEEDRATE          { 500, 500, 15, 50 }
@@ -1534,7 +1545,7 @@
 	    #if ENABLED(CUSTOM_ESTEPS)
 		    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, CUSTOM_ESTEPS_VALUE }
 	    #else
-        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 93 }
+        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 95 }
       #endif
 	  #endif
 	#else
@@ -1544,7 +1555,7 @@
 	    #if ENABLED(CUSTOM_ESTEPS)
 		    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
 	    #else
-        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+        #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
 	    #endif
 	  #endif
   #endif
@@ -1755,6 +1766,10 @@
   
 #endif //End ANET model settings
 
+#if ENABLED(SLIM_1284P) && ENABLED(BLTOUCH)
+  #define DISABLE_BOOT
+#endif
+
 //Machine Check
 #if DISABLED(PRINTER_ENABLED_CHECK)
   #if DISABLED(TH3DINHOUSEMACHINE)  
@@ -1767,7 +1782,7 @@
   #define NEOPIXEL_TYPE   NEO_GRB
   #define NEOPIXEL_PIN    19
   #if ENABLED(TH3D_EZ300)
-    #define NEOPIXEL_PIXELS 4
+    #define NEOPIXEL_PIXELS 3
   #else
     #define NEOPIXEL_PIXELS TH3D_RGB_STRIP_LED_COUNT
   #endif
@@ -1783,6 +1798,8 @@
   #else
     #if ENABLED(TH3D_EZ300)
       #define CUSTOM_MACHINE_NAME "Alpha EZ300"
+    #elif ENABLED(BLTOUCH)
+      #define CUSTOM_MACHINE_NAME "TH3D BLTouch"
     #elif ENABLED(EZABL_ENABLE)
       #define CUSTOM_MACHINE_NAME "TH3D EZABL"
     #elif ENABLED(EZOUT_ENABLE)
@@ -1835,7 +1852,7 @@
 #if DISABLED(TH3DINHOUSEMACHINE)
   #if ENABLED(V6_HOTEND)
     #define TEMP_SENSOR_0 5
-  #elif ENABLED(TH3D_HOTEND_THERMISTOR)
+  #elif ENABLED(TH3D_HOTEND_THERMISTOR) || ENABLED(TH3D_EZ300)
     #define TEMP_SENSOR_0 1
   #elif ENABLED(WANHAO_D6)
     #define TEMP_SENSOR_0 20
@@ -1864,7 +1881,7 @@
 #if DISABLED(TH3DINHOUSEMACHINE)
   #if ENABLED(AC_BED) || ENABLED(WANHAO_I3MINI)
     #define TEMP_SENSOR_BED 0
-  #elif ENABLED(TH3D_BED_THERMISTOR) || ENABLED(ALFAWISE_U10) || ENABLED(FT5)
+  #elif ENABLED(TH3D_BED_THERMISTOR) || ENABLED(ALFAWISE_U10) || ENABLED(FT5) || ENABLED(TH3D_EZ300)
     #define TEMP_SENSOR_BED 1
   #elif ENABLED(TAZ5)
     #define TEMP_SENSOR_BED 7
@@ -1909,7 +1926,7 @@
 #if ENABLED(BED_HIGHTEMP)
   #define BED_MAXTEMP 150
 #else
-  #define BED_MAXTEMP 110
+  #define BED_MAXTEMP 120
 #endif
 
 #define PIDTEMP
@@ -1926,9 +1943,9 @@
     #define  DEFAULT_Ki 0.41
     #define  DEFAULT_Kd 50.98
   #elif ENABLED(TH3D_EZ300)
-    #define DEFAULT_Kp 23.55
-    #define DEFAULT_Ki 2.33
-    #define DEFAULT_Kd 57.20
+    #define DEFAULT_Kp 47.60
+    #define DEFAULT_Ki 7.96
+    #define DEFAULT_Kd 71.16
   #elif ENABLED(TIM_TORNADO)
     #define DEFAULT_Kp 31.89
     #define DEFAULT_Ki 4.99
@@ -1953,6 +1970,10 @@
     #define  DEFAULT_bedKp 124.55
     #define  DEFAULT_bedKi 23.46
     #define  DEFAULT_bedKd 165.29
+  #elif ENABLED(TH3D_EZ300)
+    #define  DEFAULT_bedKp 113.36
+    #define  DEFAULT_bedKi 21.62
+    #define  DEFAULT_bedKd 148.59
   #else
     #define  DEFAULT_bedKp 690.34
     #define  DEFAULT_bedKi 111.47
@@ -1976,6 +1997,10 @@
   #define USE_YMIN_PLUG
   #define USE_ZMIN_PLUG
   #define USE_XMAX_PLUG
+#elif ENABLED(ENDER5)
+  #define USE_XMAX_PLUG
+  #define USE_YMAX_PLUG
+  #define USE_ZMIN_PLUG
 #else
   #define USE_XMIN_PLUG
   #define USE_YMIN_PLUG
@@ -1992,15 +2017,17 @@
   #define HOMING_FEEDRATE_XY (40*60)
 #endif
 
-#if ENABLED(EZABL_FASTPROBE)
-	#define HOMING_FEEDRATE_Z  (8*60)
-#else
+#if DISABLED(EZABL_FASTPROBE)
 	#define HOMING_FEEDRATE_Z  (4*60)
+#else
+	#define HOMING_FEEDRATE_Z  (8*60)
 #endif
   
 #if ENABLED(EZABL_ENABLE)
   #define RESTORE_LEVELING_AFTER_G28
-  #define FIX_MOUNTED_PROBE
+  #if DISABLED(BLTOUCH)
+    #define FIX_MOUNTED_PROBE
+  #endif
   #define Z_PROBE_OFFSET_FROM_EXTRUDER 0
   #if ENABLED(PROBING_MOTORS_OFF)
     #define XY_PROBE_SPEED 8000
@@ -2009,12 +2036,17 @@
   #endif
   #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
   #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)  
-  #if ENABLED(FIX_MOUNTED_PROBE) && DISABLED(HEATERS_ON_DURING_PROBING)
+  #if (ENABLED(FIX_MOUNTED_PROBE) || ENABLED(BLTOUCH)) && DISABLED(HEATERS_ON_DURING_PROBING)
     #define PROBING_HEATERS_OFF   
   #endif  
   #define MULTIPLE_PROBING 2
-  #define Z_CLEARANCE_DEPLOY_PROBE   5
-  #define Z_CLEARANCE_BETWEEN_PROBES 3 
+  #if ENABLED(BLTOUCH)
+    #define Z_CLEARANCE_DEPLOY_PROBE   15
+    #define Z_CLEARANCE_BETWEEN_PROBES 10
+  #else
+    #define Z_CLEARANCE_DEPLOY_PROBE   5
+    #define Z_CLEARANCE_BETWEEN_PROBES 3
+  #endif
   #define Z_PROBE_OFFSET_RANGE_MIN  -5
   #define Z_PROBE_OFFSET_RANGE_MAX  1  
   #define Z_MIN_PROBE_REPEATABILITY_TEST  
@@ -2034,9 +2066,9 @@
   #if ENABLED(EZABL_OUTSIDE_GRID_COMPENSATION)
     #define EXTRAPOLATE_BEYOND_GRID
   #endif
-#endif  
+#endif
 
-#if DISABLED(POWER_LOSS_RECOVERY)
+#if DISABLED(POWER_LOSS_RECOVERY) && DISABLED(BLTOUCH)
   #define S_CURVE_ACCELERATION
 #endif
 
@@ -2112,6 +2144,7 @@
 #endif
 
 #if ENABLED(MANUAL_MESH_LEVELING) && DISABLED(EZABL_ENABLE)
+  #define RESTORE_LEVELING_AFTER_G28
   #define PROBE_MANUALLY
   #define LCD_BED_LEVELING
   #define MESH_BED_LEVELING

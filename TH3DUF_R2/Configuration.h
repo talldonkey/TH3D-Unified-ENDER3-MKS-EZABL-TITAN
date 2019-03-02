@@ -34,7 +34,7 @@
 *
 * STEP 6:
 * Reset your eeprom. You can send M502 then M500 to reset the EEPROM OR on the printer LCD go to 
-* Control > Initialize EEPROM to clear out the EEPROM to defaults.
+* Control > Reset EEPROM to clear out the EEPROM to defaults.
 *
 * BOOTLOADER FLASHING NOTES:
 * For flashing your bootloader with an Uno make sure to select Arduino as ISP for the programmer
@@ -80,6 +80,15 @@
 
 // EZABL Probe Mounts
 //#define EZ300_OEM_MOUNT
+
+// The Alpha X Carriage is 100% compatible with the Creality printer mounts.
+//#define CR10_OEM
+//#define CR10_VOLCANO
+//#define CR10_V6HEAVYDUTY
+//#define CR10_FANG
+//#define TM3DAERO
+//#define TM3DAERO_EXTENDED
+//#define PETSFANG //This is the RIGHT mounted version - if using the left mount please use the CUSTOM_PROBE option.
 //#define CUSTOM_PROBE
 
 //===========================================================================
@@ -309,7 +318,6 @@
 
 //===========================================================================
 // Creality Ender 5 Options - Select 'Sanguino 1284p' from Tools > Board
-// NOT TESTED - DO NOT USE - WILL FINALIZE IN U1.R2.9 VERSION
 //===========================================================================
 //#define ENDER5
 
@@ -491,8 +499,8 @@
 // (only used if EZABL enabled)
 #define EZABL_PROBE_EDGE 20
 
-// If you want to speed up the probing process you can try using the Fast Probe option
-// DO NOTE: Not all machines will be accurate at the quicker speeds. Use M48 to verify accuracy.
+// If you have issues with your machine running the faster probe setting disable the #define EZABL_FASTPROBE below.
+// DO NOTE: Most machines will work with the fast probe enabled. Use M48 to verify accuracy.
 #define EZABL_FASTPROBE
 
 // This will disable the XYE motors during probing. Can be useful if you have stepper motors causing interference issues with the EZABL sensor.
@@ -500,6 +508,10 @@
 
 // Heaters will stay on during probing - only use if directed to by support. Do not use on AC beds.
 //#define HEATERS_ON_DURING_PROBING
+
+// If you want a more granular control over the babystepping uncomment the below line.
+// This will make the adjustment finer than the standard setting.
+//#define FINE_BABYSTEPPING
 
 // This will extrapolate the implied tilt of the bed outside of the probe area. Do not comment out unless directed by support.
 #define EZABL_OUTSIDE_GRID_COMPENSATION
@@ -582,7 +594,7 @@
 // If you are using an AC bed with a standalone controller (Keenovo) uncomment the below line to disable the heated bed in the firmware
 //#define AC_BED
 
-// Stock bed max is 110C for this firmware. Enable this to allow temps up to 150C. Your bed must support this temp for it to achieve the higher temperatures.
+// Stock bed max is 120C for this firmware. Enable this to allow temps up to 150C. Your bed must support this temp for it to achieve the higher temperatures.
 //#define BED_HIGHTEMP
 
 // MISC --------------------------------------------
@@ -620,6 +632,7 @@
 // Linear Advance Pressure Control - This is provided for convenience and is unsupported with included product support.
 // See http://marlinfw.org/docs/features/lin_advance.html for full instructions.
 // Uncomment the below line to enable Linear Advance Pressure Control.
+// If using linear advance along with EZABL on a printer with 1284p some Control > Motion menus will not be displayed due to space restrictions
 #define LINEAR_ADVANCE
 // Change the K Value here or use M900 KX.XX in your starting code (recommended).
 #define LINEAR_ADVANCE_K 0.15
@@ -642,6 +655,14 @@
 // !!!USE AT YOUR OWN RISK!!!
 //#define POWER_LOSS_RECOVERY
 
+// If you want to use the BL-Touch install your EZOut Board, uncomment the 2 lines below, uncomment the CUSTOM_PROBE option
+// in your printer section, and then enter your probe offsets in the CUSTOM_PROBE section above.
+// NOTE: On 1284p boards due to space limitations and the large amount of code the BLTouch requires 
+// the Bootscreen, SCurve Acceleration, & Junction Jerk will be disabled.
+//#define BLTOUCH
+// Here is where you set your servo pin. EZOut Servo Pin Numbers: Others - 27, Ender 2 - 29
+//#define SERVO0_PIN 27
+
 //================================================================================================
 // Language - This is provided for convenience and is unsupported with included product support.
 // We only test compile with English language. If you run into space issues disable some features.
@@ -661,6 +682,6 @@
 
 #include "Configuration_backend.h"
 
-#define UNIFIED_VERSION "TH3D U1.R2.8"
+#define UNIFIED_VERSION "TH3D U1.R2.8a"
 
 #endif // CONFIGURATION_H
