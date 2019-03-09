@@ -13,7 +13,7 @@ This fork is meant for my Creality Ender-3 Modded machine with these properties/
 * [Petsfang Direct with Titan Extruder](https://www.thingiverse.com/thing:2907538)
 * [TH3D EZABL Mini](https://www.th3dstudio.com/product-category/auto-bed-leveling/) using the left-side mounted EZABL mount provided by the Petsfang Direct
   * This assumes that the EZABL was purchased from TH3D and that the Z-End-Stop has been modified for the EZABL.
-* [TH3D EZOut V1](https://www.th3dstudio.com/product/ezout-cr-10-filament-sensor-kit/)
+* [TH3D EZOut V1](https://www.th3dstudio.com/product/ezout-cr-10-filament-sensor-kit/)  (not implemented/tested!)
 
 ----------
 
