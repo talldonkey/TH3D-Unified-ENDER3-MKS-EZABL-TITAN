@@ -7,7 +7,8 @@ This fork is meant for my Creality Ender-3 Modded machine with these properties/
 * Early Ender-3, Offset wheels, single sided Y tensioner, glued on build sheet
 * Stock Display
 * MKS Gen L Mainboard
-* FYSETC TMC2208 V1.2 on X, Y, Z, and E
+* FYSETC TMC2208 V1.2 on X, Y, Z in Standalone
+* MKS LV8729 on E
 * Stock Creality Hotend with [TH3D Titanium All-Metal Heatbreak](https://www.th3dstudio.com/product/tough-titanium-heatbreak-for-creality-machines-tough-dual-hotend/)
 * [Petsfang Direct with Titan Extruder](https://www.thingiverse.com/thing:2907538)
 * [TH3D EZABL Mini](https://www.th3dstudio.com/product-category/auto-bed-leveling/) using the left-side mounted EZABL mount provided by the Petsfang Direct
