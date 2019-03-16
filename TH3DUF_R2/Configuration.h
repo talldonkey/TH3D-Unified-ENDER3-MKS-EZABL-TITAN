@@ -563,7 +563,8 @@
 // If you are using an TH3D Tough Extruder, Bondtech BMG (set steps below to 415), or E3D Titan Extruder
 // uncomment the below line to setup the firmware to the correct steps and direction. Also applicable to Titan/Tough Aero setups.
 #define TITAN_EXTRUDER
-#define TITAN_EXTRUDER_STEPS 463
+//#define TITAN_EXTRUDER_STEPS 463
+#define TITAN_EXTRUDER_STEPS 440
 
 // DUAL HOTEND SETTINGS ----------------------------
 
@@ -624,9 +625,9 @@
 // custom XY offsets. This is provided for convenience and is unsupported with included product support.
 // How to use - measure (home XY then jog using the LCD 1mm at a time) the X and Y distance the nozzle is off
 // the build plate and then put those as NEGATIVE values below, positive values will NOT work (move your endstops to fix a positve offset).
-//#define HOME_ADJUST
-#define X_HOME_LOCATION -10
-#define Y_HOME_LOCATION -10
+#define HOME_ADJUST
+#define X_HOME_LOCATION -1
+#define Y_HOME_LOCATION -12.5
 
 // Linear Advance Pressure Control - This is provided for convenience and is unsupported with included product support.
 // See http://marlinfw.org/docs/features/lin_advance.html for full instructions.
