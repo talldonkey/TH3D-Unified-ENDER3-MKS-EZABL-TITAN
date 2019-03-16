@@ -31,6 +31,11 @@
     #define DISABLE_BOOT
   #endif
 #endif
+#if ENABLED(ENDER4_OEM_LEFT)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -53
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -19
+  #define EZABL_ENABLE
+#endif
 #if ENABLED(ADIM_I3P_OEM)
   #define X_PROBE_OFFSET_FROM_EXTRUDER 33
   #define Y_PROBE_OFFSET_FROM_EXTRUDER -60
@@ -156,6 +161,80 @@
   #define DISABLE_BOOT
 #endif
 
+//Ender 4 Settings
+#if ENABLED(ENDER4)
+  #define BAUDRATE 115200
+  
+  #ifndef MOTHERBOARD
+    #define MOTHERBOARD BOARD_RAMPS_ENDER_4
+  #endif
+    
+  #define X_MIN_ENDSTOP_INVERTING true
+  #define Y_MIN_ENDSTOP_INVERTING false
+  #define Z_MIN_ENDSTOP_INVERTING false
+  #define X_MAX_ENDSTOP_INVERTING false
+  #define Y_MAX_ENDSTOP_INVERTING false
+  #define Z_MAX_ENDSTOP_INVERTING false
+  #define Z_MIN_PROBE_ENDSTOP_INVERTING false
+
+  #if ENABLED(TITAN_EXTRUDER)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, TITAN_EXTRUDER_STEPS }
+  #else
+    #if ENABLED(CUSTOM_ESTEPS)
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, CUSTOM_ESTEPS_VALUE }
+    #else
+      #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95 }
+    #endif
+  #endif
+  
+  #define REPRAP_DISCOUNT_SMART_CONTROLLER
+  #define LCD2004
+  
+  #define DEFAULT_MAX_FEEDRATE          { 400, 400, 15, 50 }
+
+  #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 50, 5000 }
+  
+  #define DEFAULT_ACCELERATION          1000    
+  #define DEFAULT_RETRACT_ACCELERATION  1000   
+  #define DEFAULT_TRAVEL_ACCELERATION   1000
+  
+  #define COREXY
+
+  #if ENABLED(TIM_ENDER4)
+    #define X_BED_SIZE 210
+  #else
+    #define X_BED_SIZE 220
+  #endif
+  
+  #define Y_BED_SIZE 220
+  #define Z_MAX_POS 310
+
+  #if ENABLED(HOME_ADJUST)
+    #define X_MIN_POS X_HOME_LOCATION
+    #define Y_MIN_POS Y_HOME_LOCATION
+  #else
+    #define X_MIN_POS 0
+    #define Y_MIN_POS 0
+  #endif
+
+  #define DEFAULT_XJERK                 10.0
+  #define DEFAULT_YJERK                 10.0
+  #define DEFAULT_ZJERK                  0.4
+  #define DEFAULT_EJERK                  5.0
+
+  #define INVERT_X_DIR true
+  #define INVERT_Y_DIR true
+  #define INVERT_Z_DIR true
+
+  #if ENABLED(TITAN_EXTRUDER)
+    #define INVERT_E0_DIR false
+  #else
+    #define INVERT_E0_DIR true
+  #endif
+  
+  #define PRINTER_ENABLED_CHECK
+#endif //end ender 4 settings
+
 //Tronxy X5S Settings
 #if ENABLED(TRONXY_X5S)
   #define SLIM_1284P
@@ -168,9 +247,9 @@
   #define X_MIN_ENDSTOP_INVERTING true
   #define Y_MIN_ENDSTOP_INVERTING true
   #define Z_MIN_ENDSTOP_INVERTING true
-  #define X_MAX_ENDSTOP_INVERTING true
-  #define Y_MAX_ENDSTOP_INVERTING true
-  #define Z_MAX_ENDSTOP_INVERTING true
+  #define X_MAX_ENDSTOP_INVERTING false
+  #define Y_MAX_ENDSTOP_INVERTING false
+  #define Z_MAX_ENDSTOP_INVERTING false
   #define Z_MIN_PROBE_ENDSTOP_INVERTING true
 
   #if ENABLED(TITAN_EXTRUDER)
@@ -1101,10 +1180,10 @@
   #endif
   
   #define DEFAULT_MAX_FEEDRATE          { 200, 200, 15, 50 }
-  #define DEFAULT_MAX_ACCELERATION      { 800, 800, 100, 5000 }
+  #define DEFAULT_MAX_ACCELERATION      { 500, 800, 500, 5000 }
 
   #define DEFAULT_ACCELERATION          500   
-  #define DEFAULT_RETRACT_ACCELERATION  1000  
+  #define DEFAULT_RETRACT_ACCELERATION  500  
   #define DEFAULT_TRAVEL_ACCELERATION   500   
   
   #if ENABLED(CR10_S4) || ENABLED(CR10_S5)
@@ -1114,7 +1193,7 @@
     #define DEFAULT_XJERK                 7.0
     #define DEFAULT_YJERK                 7.0
   #endif
-  #define DEFAULT_ZJERK                  0.4
+  #define DEFAULT_ZJERK                  0.3
   #define DEFAULT_EJERK                  5.0
   
   #define INVERT_X_DIR true
@@ -1222,15 +1301,20 @@
   #endif
   
   #define DEFAULT_MAX_FEEDRATE          { 500, 500, 15, 50 }
-  #define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 100, 5000 }
+  #define DEFAULT_MAX_ACCELERATION      { 500, 500, 100, 5000 }
 
   #define DEFAULT_ACCELERATION          500    
-  #define DEFAULT_RETRACT_ACCELERATION  1000   
+  #define DEFAULT_RETRACT_ACCELERATION  500   
   #define DEFAULT_TRAVEL_ACCELERATION   500    
   
-  #define DEFAULT_XJERK                 10.0
-  #define DEFAULT_YJERK                 10.0
-  #define DEFAULT_ZJERK                  0.4
+  #if ENABLED(CR10S_S4) || ENABLED(CR10S_S5)
+    #define DEFAULT_XJERK                 5.0
+    #define DEFAULT_YJERK                 5.0
+  #else
+    #define DEFAULT_XJERK                 7.0
+    #define DEFAULT_YJERK                 7.0
+  #endif
+  #define DEFAULT_ZJERK                  0.3
   #define DEFAULT_EJERK                  5.0
   
   #define INVERT_X_DIR false
@@ -1275,8 +1359,8 @@
   #endif
   
   #if ENABLED(ENDER3_DUALBOARD)
-    #define X_BED_SIZE 220
-    #define Y_BED_SIZE 220
+    #define X_BED_SIZE 235
+    #define Y_BED_SIZE 235
     #define Z_MAX_POS 250
   #endif
   
@@ -1817,6 +1901,8 @@
   #define SLIM_LCD_MENUS
   #if ENABLED(LINEAR_ADVANCE)
     #define DISABLE_BOOT
+  #elif ENABLED(EZABL_ENABLE)
+    #define DISABLE_BOOT
   #endif
 #endif
 
@@ -1852,6 +1938,8 @@
 #if DISABLED(TH3DINHOUSEMACHINE)
   #if ENABLED(V6_HOTEND)
     #define TEMP_SENSOR_0 5
+  #elif ENABLED(KNOWN_HOTEND_THERMISTOR)
+    #define TEMP_SENSOR_0 KNOWN_HOTEND_THERMISTOR_VALUE
   #elif ENABLED(TH3D_HOTEND_THERMISTOR) || ENABLED(TH3D_EZ300)
     #define TEMP_SENSOR_0 1
   #elif ENABLED(WANHAO_D6)
@@ -1881,6 +1969,8 @@
 #if DISABLED(TH3DINHOUSEMACHINE)
   #if ENABLED(AC_BED) || ENABLED(WANHAO_I3MINI)
     #define TEMP_SENSOR_BED 0
+  #elif ENABLED(KNOWN_BED_THERMISTOR)
+    #define TEMP_SENSOR_BED KNOWN_BED_THERMISTOR_VALUE
   #elif ENABLED(TH3D_BED_THERMISTOR) || ENABLED(ALFAWISE_U10) || ENABLED(FT5) || ENABLED(TH3D_EZ300)
     #define TEMP_SENSOR_BED 1
   #elif ENABLED(TAZ5)
@@ -1958,7 +2048,11 @@
 #endif 
 
 #if ENABLED(PIDBED_ENABLE)
-  #if DISABLED(SLIM_1284P) && DISABLED(MANUAL_MESH_LEVELING)
+  #if ENABLED(SLIM_1284P) && ENABLED(MANUAL_MESH_LEVELING)
+    //do nothing
+  #elif ENABLED(SLIM_1284P) && ENABLED(EZABL_ENABLE)
+    //do nothing
+  #else
     #define PIDTEMPBED
   #endif
 #endif
@@ -2068,8 +2162,10 @@
   #endif
 #endif
 
-#if DISABLED(POWER_LOSS_RECOVERY) && DISABLED(BLTOUCH)
-  #define S_CURVE_ACCELERATION
+#if DISABLED(S_CURVE_ACCELERATION_DISABLE)
+  #if DISABLED(POWER_LOSS_RECOVERY)
+    #define S_CURVE_ACCELERATION
+  #endif
 #endif
 
 #define X_ENABLE_ON 0
@@ -2125,7 +2221,7 @@
   #define MAX_SOFTWARE_ENDSTOP_Z
 #endif
 
-#if ENABLED(EZOUT_ENABLE) || ENABLED(EZOUTV2_ENABLE) || (ENABLED(CR10S) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_MINI) && DISABLED(CR10S_NOFILAMENTSENSOR))  || (ENABLED(CR10S_S4) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_S5) && DISABLED(CR10S_NOFILAMENTSENSOR)) || ENABLED(ALFAWISE_U10) || ENABLED(ADIM_GANTRY_I3_PLUS)
+#if ENABLED(EZOUT_ENABLE) || ENABLED(EZOUTV2_ENABLE) || (ENABLED(CR10S) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_MINI) && DISABLED(CR10S_NOFILAMENTSENSOR))  || (ENABLED(CR10S_S4) && DISABLED(CR10S_NOFILAMENTSENSOR)) || (ENABLED(CR10S_S5) && DISABLED(CR10S_NOFILAMENTSENSOR)) || ENABLED(ALFAWISE_U10) || ENABLED(ADIM_GANTRY_I3_PLUS) || ENABLED(ENDER4_FIL)
   #define FILAMENT_RUNOUT_SENSOR
   #if ENABLED(FILAMENT_RUNOUT_SENSOR)
     #if ENABLED(EZOUT_ENABLE) || ENABLED(EZOUTV2_ENABLE) || ENABLED(ADIM_GANTRY_I3_PLUS)
@@ -2178,9 +2274,15 @@
 #define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
-  #define NOZZLE_PARK_POINT { 10, 10, 10 }
-  #define NOZZLE_PARK_XY_FEEDRATE 100  
-  #define NOZZLE_PARK_Z_FEEDRATE 5  
+  #if ENABLED(WANHAO_I3) || ENABLED(WANHAO_D6)
+    #define NOZZLE_PARK_POINT { (X_MAX_POS - 15), 15, 10 }
+    #define NOZZLE_PARK_XY_FEEDRATE 100  
+    #define NOZZLE_PARK_Z_FEEDRATE 5  
+  #else  
+    #define NOZZLE_PARK_POINT { 10, 10, 10 }
+    #define NOZZLE_PARK_XY_FEEDRATE 100  
+    #define NOZZLE_PARK_Z_FEEDRATE 5  
+  #endif
 #endif
 
 #define PRINTJOB_TIMER_AUTOSTART
