@@ -60,10 +60,15 @@
 #define TALLDONKEY_ENDER3
 
 // Petsfang Left Mounted Probe with X-53 Y-13, with custom PETSFANG_LEFT define in configuration_backend.h
-#define PETSFANG_LEFT
+// #define PETSFANG_LEFT
+// Moved to Custom Probe Definition
+#define CUSTOM_PROBE
 
 // EZOut left disabled until I can get it figured out
 //#define EZOUT_ENABLE
+
+// Filament Sensor Enable - Connected to Z+
+#define EZOUTV2_ENABLE
 
 
 //===========================================================================
@@ -561,8 +566,8 @@
   *      O-- FRONT --+
   *    (0,0)
   */
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
+  #define X_PROBE_OFFSET_FROM_EXTRUDER -48  // X offset: -left  +right  [of the nozzle]
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -13  // Y offset: -front +behind [the nozzle]
 #endif
 
 //===========================================================================
@@ -661,7 +666,7 @@
 // the build plate and then put those as NEGATIVE values below, positive values will NOT work (move your endstops to fix a positve offset).
 #define HOME_ADJUST
 #define X_HOME_LOCATION -1
-#define Y_HOME_LOCATION -12.5
+#define Y_HOME_LOCATION -8
 
 // LINEAR ADVANCE ----------------------------------
 // See here on how to use Linear Advance: http://marlinfw.org/docs/features/lin_advance.html
@@ -678,9 +683,14 @@
 // support the people that originally came up with the board you can get our EZOut breakout board here: http://EZOut.TH3DStudio.com
 // Sales from our shop allow us to allocate time for community firmware development at no charge to you. <3
 //
-//#define BLTOUCH
+#define BLTOUCH
+#if ENABLED(BLTOUCH)
+  #define BLTOUCH_DELAY 100  // Set up Faster Probing
+#endif
+
 // Here is where you set your servo pin. EZOut Servo Pin Numbers: Others - 27, Ender 2 - 29. For 2560 boards look for the pin you connected the servo wire to and enter below.
 //#define SERVO0_PIN 27
+#define SERVO0_PIN 6  // MKS Gen L Location
 //
 // NOTE: On 1284p boards due to space limitations and the large amount of code the BLTouch requires for the LCD Menus
 // the Bootscreen and some Control > Motion menus will not be displayed due to space restrictions
